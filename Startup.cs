@@ -32,10 +32,10 @@ namespace rest_api_dotnetcore
             services.Configure<MongoDbSettings>(Configuration.GetSection("MongoDB"));
 
             // register dbcontext as singleton
-            services.AddSingleton<DatabaseContext>();
+            services.AddScoped<DatabaseContext>();
             // register dependency interfaces with their implementation as singletons
-            services.AddSingleton<IBurgersRepo, BurgersRepo>();
-            services.AddSingleton<IBurgersService, BurgersService>();
+            services.AddScoped<IBurgersRepo, BurgersRepo>();
+            services.AddScoped<IBurgersService, BurgersService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
