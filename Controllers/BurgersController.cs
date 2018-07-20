@@ -1,10 +1,12 @@
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using rest_api_dotnetcore.Models;
 using rest_api_dotnetcore.Services;
 
 namespace rest_api_dotnetcore.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class BurgersController : Controller
     {
@@ -48,6 +50,7 @@ namespace rest_api_dotnetcore.Controllers
             return Ok(burger);
         }
 
+        [Authorize(Roles = "SupaAdmin")]
         [HttpPost]
         public async Task<IActionResult> SaveBurger([FromBody] Burger burger)
         {
